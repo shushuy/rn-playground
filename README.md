@@ -62,36 +62,84 @@ If everything is set up correctly, you should see your new app running in the An
 
 This is one way to run your app — you can also build it directly from Android Studio or Xcode.
 
-## Step 3: Modify your app
+# React Native Project Structure
 
-Now that you have successfully run the app, let's make changes!
+This document outlines the recommended folder structure for a scalable and maintainable React Native application.
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+## Root Structure
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+/my-app
+│
+├── /android              # Native Android project
+├── /ios                  # Native iOS project
+├── /assets               # Static assets (images, fonts, videos, etc.)
+├── /src                  # All application source code
+│   ├── /api              # API services and HTTP clients
+│   ├── /components       # Reusable UI components
+│   ├── /constants        # Application-wide constant values
+│   ├── /hooks            # Custom React hooks
+│   ├── /navigation       # React Navigation configuration
+│   ├── /screens          # Screen components mapped to routes
+│   ├── /store            # Global state management (e.g., Redux, Zustand)
+│   ├── /theme            # Application styling and theme configuration
+│   ├── /types            # TypeScript types and interfaces
+│   ├── /utils            # Utility and helper functions
+│   ├── /vendor           # Manually integrated or custom-modified third-party code
+│   └── App.tsx           # Main application entry point
+│
+├── .env                  # Environment variable definitions
+├── app.json              # Application configuration (for Expo or RN CLI)
+├── babel.config.js       # Babel configuration
+├── package.json          # Project dependencies and scripts
+└── tsconfig.json         # TypeScript configuration
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+## Folder Descriptions
 
-## Congratulations! :tada:
+### assets/
+Contains static assets such as images, fonts, and videos.
 
-You've successfully run and modified your React Native App. :partying_face:
+### api/
+Includes API clients, Axios configurations, and service functions that handle network requests.
 
-### Now what?
+### components/
+Reusable UI components that are shared across multiple screens or modules. Examples include buttons, cards, loaders, etc.
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+### constants/
+Defines constant values such as color palettes, font sizes, string enums, and other static values used throughout the application.
 
-# Troubleshooting
+### hooks/
+Contains custom React hooks that encapsulate reusable logic, such as useAuth or useDebounce.
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+### navigation/
+Holds navigation configuration including stack, tab, or drawer navigators, as well as route definitions.
 
-# Learn More
+### screens/
+Each file or folder represents a top-level screen that corresponds to a route in the navigation structure.
 
-To learn more about React Native, take a look at the following resources:
+### store|context/
+Implements global state management, such as Redux, Zustand, or Context API. This may include slices, atoms, actions, or middleware.
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+### theme/
+Defines theming logic, including styles, spacing, color systems, typography, and dark/light mode configurations.
+
+### types/
+TypeScript type definitions and interfaces used across the application.
+
+### utils/
+General-purpose utility functions and helpers, such as formatting, validation, and calculations.
+
+
+## incoming Folders
+
+- i18n/: Localization and translation configuration
+- services/: Business logic or service layers such as authentication or analytics
+- mocks/: Mock data and fake APIs for development and testing
+- __tests__/: Unit and integration tests for components, screens, and utilities
+
+## Best Practices
+
+- Organize code by feature or module for better maintainability in large-scale apps
+- Keep components small, focused, and reusable
+- Use clear naming conventions and consistent folder patterns
+- Minimize logic in UI components by extracting into hooks or services
+
